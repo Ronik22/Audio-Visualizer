@@ -1,5 +1,3 @@
-// https://youtu.be/uk96O7N1Yo0
-
 var song
 var fft
 var particles = []
@@ -17,7 +15,7 @@ function setup() {
     angleMode(DEGREES)
     imageMode(CENTER)
     rectMode(CENTER)
-    fft = new p5.FFT(0.2)
+    fft = new p5.FFT(0.8, 512)
     img.filter(BLUR, 1)
     noLoop()
 }
@@ -55,7 +53,7 @@ function draw() {
         beginShape()
         for(var i = 0; i <= 180; i += 0.5) {
             var index = floor(map(i,0,180,0,wave.length-1))
-            var r = map(wave[index], -1, 1, 100, 350)
+            var r = map(wave[index], -1, 1, 90, 350)
             var x = r * sin(i) * t
             var y = r * cos(i)
             vertex(x,y)
@@ -94,8 +92,8 @@ class Particle{
         this.vel = createVector(0,0)
         this.acc = this.pos.copy().mult(random(0.0001, 0.00001))
 
-        this.w = random(5, 8)
-        this.color = [random(200,255), random(200,255), random(100,255)]
+        this.w = random(3, 5)
+        this.color = [random(100,255), random(200,255), random(100,255)]
     }
     update(cond) {
         this.vel.add(this.acc)
