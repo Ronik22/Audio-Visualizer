@@ -16,7 +16,7 @@ function setup() {
     imageMode(CENTER)
     rectMode(CENTER)
     colorMode(HSB)
-    fft = new p5.FFT(0.8)
+    fft = new p5.FFT(0.9)
     img.filter(BLUR, 1)
     noLoop()
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Visualizers</title>
+</head>
+<body>
+    <h2>Audio Visualizers</h2>
+    <ul id="vislist">
+
+    </ul>
+    <script>
+        const base_url = "./examples"
+        const dirList = [
+            "linear waveform 1",
+            "linear waveform 2",
+            "circular waveform 1",
+            "circular waveform 2",
+            "circular waveform 3",
+            "circular waveform 4",
+            "circular waveform 5",
+        ]
+        const vislist_ul = document.getElementById("vislist")
+        for(var i = 0; i < dirList.length; i++) {
+            const newLi = `<li><a href="${base_url}/${dirList[i]}/index.html">${dirList[i]}</a></li>`
+            vislist_ul.innerHTML += newLi
+            console.log(newLi)
+        }
+    </script>
+</body>
+</html>
