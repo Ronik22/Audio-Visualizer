@@ -5,15 +5,15 @@ var img
 
 
 function preload() {
-    inputbtn = createFileInput((file)=>{
-        song = loadSound(file)
-        document.getElementsByTagName("input")[0].setAttribute("type","hidden");
-        alert("Click on the screen to play or pause")
-    }); 
-    inputbtn.position(windowWidth/2 -50,15)
+    // inputbtn = createFileInput((file)=>{
+    //     song = loadSound(file)
+    //     document.getElementsByTagName("input")[0].setAttribute("type","hidden");
+    //     alert("Click on the screen to play or pause")
+    // }); 
+    // inputbtn.position(windowWidth/2 -50,15)
     // song = loadSound("./track01.mp3")
     // song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
-    // song = loadSound("../../assets/Whales & Jo Cohen - Love Is Gone [NCS Release].mp3")
+    song = loadSound("../../assets/Whales & Jo Cohen - Love Is Gone [NCS Release].mp3")
     
     img = loadImage("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
 }
@@ -25,7 +25,7 @@ function setup() {
     imageMode(CENTER)
     colorMode(HSB);
     rectMode(CENTER)
-    fft = new p5.FFT(0.9)
+    fft = new p5.FFT(0.9,512)
     img.filter(BLUR, 5)
     noLoop()
 }
@@ -77,7 +77,7 @@ function draw() {
         
     // }
     // beginShape()
-    for(var i = 0; i < spectrum.length; i+=10) {
+    for(var i = 0; i < spectrum.length; i+=6) {
         var angle = map(i,1,spectrum.length,0,360)-90
         var amp2 = spectrum[i]
         var r = map(amp2, 0, 256, 80, 250)
@@ -85,7 +85,8 @@ function draw() {
         var y = r * cos(angle);
         
         line(0,0,x,y);
-        stroke(i/3,255,255);
+        line(x*1.05,y*1.05,x*1.06,y*1.06);
+        stroke(i/1.4,255,255);
         // vertex(x,y)
     }
 }

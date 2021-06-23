@@ -22,7 +22,7 @@ function setup() {
     imageMode(CENTER)
     rectMode(CENTER)
     colorMode(HSB)
-    fft = new p5.FFT(0.9)
+    fft = new p5.FFT(0.9,512)
     img.filter(BLUR, 1)
     noLoop()
 }
@@ -58,7 +58,7 @@ function draw() {
 
     for(var t = -1; t <= 1; t += 2) {
         // beginShape()
-        for(var i = 0; i <= 180; i += 5) {
+        for(var i = 0; i <= 180; i += 4) {
             var index = floor(map(i,0,180,0,wave.length-1))
             var r = map(wave[index], -1, 1, 50, 300)
             var x = r * sin(i) * t

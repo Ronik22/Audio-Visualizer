@@ -2,13 +2,13 @@ var song
 var fft
 
 function preload() {
-    inputbtn = createFileInput((file)=>{
-        song = loadSound(file)
-        document.getElementsByTagName("input")[0].setAttribute("type","hidden");
-        alert("Click on the screen to play or pause")
-    }); 
-    inputbtn.position(windowWidth/2 -50,15)
-    // song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
+    // inputbtn = createFileInput((file)=>{
+    //     song = loadSound(file)
+    //     document.getElementsByTagName("input")[0].setAttribute("type","hidden");
+    //     alert("Click on the screen to play or pause")
+    // }); 
+    // inputbtn.position(windowWidth/2 -50,15)
+    song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
     // song = loadSound("../../assets/Whales & Jo Cohen - Love Is Gone [NCS Release].mp3")
     // song = loadSound("../../assets/track01.mp3")
 }
@@ -22,7 +22,7 @@ function setup() {
 }
 
 function draw() {
-    background(20)
+    background(10)
     // stroke(255)
     // strokeWeight(5)
     noFill()
@@ -33,35 +33,54 @@ function draw() {
     noStroke()
     // beginShape()
 
+    for(var t=-1; t<=1; t+=2) {
     for(var i=-1; i<spectrum.length/2; i+=5) {
         var amp = spectrum[i]
         // var index = floor(map(i,0,width,0,wave.length))
         // var x = i
         var y = map(amp, 0, 1024, height, 0)
+        
+        if(i%2) {
+            y = map(amp, 0, 1024, height, 0) * 1.03
+        }
+        if(i%3) {
+            y = map(amp, 0, 1024, height, 0) * 1.05
+        }
+        if(i%5) {
+            y = map(amp, 0, 1024, height, 0) * 1.07
+        }
         // var y = wave[index] * 150 + height /1.2
         // vertex(x,y)
         // line(i*w,height,i*w,y*1.2);
         fill(i,255,255)
-        rect(i*w, y/2, w*3, height-y+5)
+        if(t===1){
+            rect(i*w, height, w*3, y - height)
+            rect(i*w, y-10, w*3)
+        } else {
+            rect(width-i*w, height, w*3, y - height)
+            rect(width-i*w, y-10, w*3)
+        }
+        
         // line(x,windowHeight,x,y);
         // stroke(i,255,255);
         
+    }
     }
 
-    for(var i=-1; i<spectrum.length/2; i+=5) {
-        var amp = spectrum[i]
-        // var index = floor(map(i,0,width,0,wave.length))
-        // var x = i
-        var y = map(amp, 0, 1024, height, 0)
-        // var y = wave[index] * 150 + height /1.2
-        // vertex(x,y)
-        // line(i*w,height,i*w,y*1.2);
-        fill(i,255,255)
-        rect(width-i*w, y/2, w*3, height-y+5)
-        // line(x,windowHeight,x,y);
-        // stroke(i,255,255);
+    // for(var i=-1; i<spectrum.length/2; i+=5) {
+    //     var amp = spectrum[i]
+    //     // var index = floor(map(i,0,width,0,wave.length))
+    //     // var x = i
+    //     var y = map(amp, 0, 1024, height, 0)
+    //     // var y = wave[index] * 150 + height /1.2
+    //     // vertex(x,y)
+    //     // line(i*w,height,i*w,y*1.2);
+    //     fill(i,255,255)
+    //     rect(width-i*w, y/2, w*3, height-y+5)
+    //     // line(x,windowHeight,x,y);
+    //     // stroke(i,255,255);
         
-    }
+    // }
     // endShape()
 }
 
