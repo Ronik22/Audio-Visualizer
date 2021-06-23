@@ -1,7 +1,13 @@
 let sound, amplitude;
 
 function preload(){
-  sound = loadSound('../../assets/Whales & Jo Cohen - Love Is Gone [NCS Release].mp3');
+  inputbtn = createFileInput((file)=>{
+      song = loadSound(file)
+      document.getElementsByTagName("input")[0].setAttribute("type","hidden");
+      alert("Click on the screen to play or pause")
+  }); 
+  inputbtn.position(windowWidth/2 -50,15)
+  // sound = loadSound('../../assets/Whales & Jo Cohen - Love Is Gone [NCS Release].mp3');
 //   sound = loadSound('../../assets/Masked Wolf - Astronaut in the Ocean.mp3');
 }
 function setup() {

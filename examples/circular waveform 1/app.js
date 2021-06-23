@@ -4,8 +4,14 @@ var particles = []
 var img
 
 function preload() {
-    // song = loadSound("./track01.mp3")
-    song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
+    inputbtn = createFileInput((file)=>{
+        song = loadSound(file)
+        document.getElementsByTagName("input")[0].setAttribute("type","hidden");
+        alert("Click on the screen to play or pause")
+    }); 
+    inputbtn.position(windowWidth/2 -50,15)
+    // song = loadSound("../../assets/Veens - Girl.mp3")
+    // song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
     // song = loadSound("./Whales & Jo Cohen - Love Is Gone [NCS Release].mp3")
     img = loadImage("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
 }
