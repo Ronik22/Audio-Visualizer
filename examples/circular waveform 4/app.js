@@ -9,10 +9,13 @@ function preload() {
         document.getElementsByTagName("input")[0].setAttribute("type","hidden");
         alert("Click on the screen to play or pause")
     }); 
-    inputbtn.position(windowWidth/2 -50,15)
+    var inputELE = document.getElementsByTagName("input")[0]
+    inputbtn.position(windowWidth/2 -120,15)
+    inputELE.style.backgroundColor = '#fe00e8';
+    inputELE.style.height = '42px';
+    inputELE.style.padding = '10px';
     // song = loadSound("../../assets/Veens - Girl.mp3")
-    // song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
-    // song = loadSound("../../assets/Whales & Jo Cohen - Love Is Gone [NCS Release].mp3")
+
     img = loadImage("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
 }
 
@@ -30,7 +33,6 @@ function setup() {
 function draw() {
     background(0)
     
-
     translate(width/2, height/2)
 
     fft.analyze()
@@ -44,20 +46,15 @@ function draw() {
     pop()
 
     var alpha = map(amp, 0, 255, 100, 150)
-    fill(10, alpha)
+    fill(10)
     noStroke()
     rect(0, 0, width, height)
-
-    // stroke(255)     // stroke color of ring
-    // stroke(220, 107, 255)
     strokeWeight(5)
     noFill()
-    // fill(255)
 
     var wave = fft.waveform()
 
     for(var t = -1; t <= 1; t += 2) {
-        // beginShape()
         for(var i = 0; i <= 180; i += 4) {
             var index = floor(map(i,0,180,0,wave.length-1))
             var r = map(wave[index], -1, 1, 50, 300)
@@ -65,10 +62,13 @@ function draw() {
             var y = r * cos(i)
             line(0,0,x,y);
             stroke(i*2,255,255);
-            // vertex(x,y)
         }
-        // endShape()
     }
+    noStroke();
+    colorMode(RGB);
+    fill(33)
+    circle(0,0,155)
+    colorMode(HSB);
 
     var p = new Particle()
     particles.push(p)

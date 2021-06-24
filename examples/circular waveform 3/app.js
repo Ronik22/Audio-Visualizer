@@ -9,11 +9,14 @@ function preload() {
         document.getElementsByTagName("input")[0].setAttribute("type","hidden");
         alert("Click on the screen to play or pause")
     }); 
-    inputbtn.position(windowWidth/2 -50,15)
+    var inputELE = document.getElementsByTagName("input")[0]
+    inputbtn.position(windowWidth/2 -120,15)
+    inputELE.style.backgroundColor = '#fe00e8';
+    inputELE.style.height = '42px';
+    inputELE.style.padding = '10px';
     // song = loadSound("../../assets/Veens - Girl.mp3")
-    // song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
-    // song = loadSound("../../assets/Whales & Jo Cohen - Love Is Gone [NCS Release].mp3")
-    img = loadImage("https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=823&q=80")
+    img = loadImage("https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=747")
+    // img = loadImage("https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=823&q=80")
 }
 
 function setup() {
@@ -22,7 +25,7 @@ function setup() {
     imageMode(CENTER)
     colorMode(HSB);
     rectMode(CENTER)
-    fft = new p5.FFT(0.8,512)
+    fft = new p5.FFT(0.7,512)
     img.filter(BLUR, 3)
     noLoop()
 }
@@ -32,12 +35,11 @@ function draw() {
     var spectrum = fft.analyze()
     translate(width/2, height/2)
 
-    //////////////////////
     amp = fft.getEnergy(20, 200)
 
     push()
     if(amp>230) {
-        rotate(random(-1, 1.5))
+        rotate(random(-1, 1))
     }
     image(img, 0, 0, width + 100, height + 100)
     pop()
@@ -48,14 +50,10 @@ function draw() {
     noStroke()
     rect(0, 0, width, height)
     colorMode(HSB);
-    ///////////////////////////
 
-    // stroke(255)     // stroke color of ring
     strokeWeight(3)
     noFill()
-    // fill(255)
 
-    // var wave = fft.waveform()
     var p = new Particle()
     particles.push(p)
 
@@ -68,8 +66,7 @@ function draw() {
         }
         
     }
-    for(t=-1;t<=1;t+=2){
-        // beginShape()
+    for(t=-1;t<=1;t+=2) {
         for(var i = 0; i < spectrum.length/2; i+=5) {
             var angle = map(i,0,spectrum.length-2,0,360)
             var amp2 = spectrum[i]
@@ -80,13 +77,9 @@ function draw() {
             var x = r * sin(angle)*t ;
             var y = r * cos(angle);
             line(0,0,x,y);
-            stroke(i*1.5,100,255);
-            // vertex(x,y)
+            stroke(i*1.4,255,100);
         }
-        // endShape()
     }
-    
-
 }
 
 function mouseClicked() {
@@ -107,7 +100,6 @@ class Particle{
 
         this.w = random(3, 5)
         this.color = [255]
-        // this.color = [random(20,255), random(255,255), random(255,255)]
     }
     update(cond) {
         this.vel.add(this.acc)

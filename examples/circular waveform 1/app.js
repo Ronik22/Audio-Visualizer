@@ -9,11 +9,14 @@ function preload() {
         document.getElementsByTagName("input")[0].setAttribute("type","hidden");
         alert("Click on the screen to play or pause")
     }); 
-    inputbtn.position(windowWidth/2 -50,15)
+    var inputELE = document.getElementsByTagName("input")[0]
+    inputbtn.position(windowWidth/2 -120,15)
+    inputELE.style.backgroundColor = '#fe00e8';
+    inputELE.style.height = '42px';
+    inputELE.style.padding = '10px';
     // song = loadSound("../../assets/Veens - Girl.mp3")
-    // song = loadSound("../../assets/Masked Wolf - Astronaut in the Ocean.mp3")
-    // song = loadSound("./Whales & Jo Cohen - Love Is Gone [NCS Release].mp3")
-    img = loadImage("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
+    img = loadImage("https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=747")
+    // img = loadImage("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
 }
 
 function setup() {
@@ -37,7 +40,7 @@ function draw() {
 
     push()
     if(amp>230) {
-        rotate(random(-1, 1.5))
+        rotate(random(-1, 1))
     }
     image(img, 0, 0, width + 100, height + 100)
     pop()

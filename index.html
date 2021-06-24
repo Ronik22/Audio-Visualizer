@@ -5,12 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Visualizers</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        .redhead {
+            color: red;
+        }
+        ul {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            padding: 10px;
+        }
+        li {
+            background-color: rgb(255, 158, 30);
+            padding: 20px;
+            font-size: 22px;
+            text-align: center;
+            list-style:none;
+        }
+        li:nth-child(even){
+            background-color: rgb(255, 240, 30);
+        }
+        li a {
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
 </head>
 <body>
-    <h2>Audio Visualizers</h2>
-    <ul id="vislist">
-
-    </ul>
+    <h1><span class="redhead">A</span>udi<span class="redhead">o</span> Visuali<span class="redhead">z</span>ers</h1>
+    <ul id="vislist"></ul>
     <script>
         const base_url = "./examples"
         const dirList = [
